@@ -1,1 +1,6 @@
-Hello world!
+index.html - mainpage that allows viewing of available threads
+
+mikechrisforum.css - main stylesheet that should be made to work with all three pages
+
+
+my current plan is to have a hader and footer that are mostly the same between the three page types -mike

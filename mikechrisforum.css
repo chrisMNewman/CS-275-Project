@@ -7,6 +7,14 @@ html{background-color: #C6C0B7;}
 #page_footer{font-size: 100%; background-color: #D85A1A;}
 
 
+table,th,td{border:1px solid black;}
+
+#table_header{font-size: 150%;}
+
 #thread_link_name{font-size: 150%; min-width: 400px;}
 #thread_link_date{width: 100px;}
 #thread_link_count{width: 100px;}
+
+#post_item_content{min-width: 300px}
+#post_item_user{font-size: 150%; width: 200px;}
+#post_item_date{width: 100px;}

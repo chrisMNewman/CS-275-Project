@@ -1,5 +1,7 @@
 index.html - mainpage that allows viewing of available threads
 
+thread.html - view the posts in a particular thread, TODO implement database access to make this actually work
+
 mikechrisforum.css - main stylesheet that should be made to work with all three pages
 
 

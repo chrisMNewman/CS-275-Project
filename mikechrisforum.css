@@ -1,1 +1,12 @@
-#wrap{min-width:600px;max-width:1000px; background-color: #FFDDAA; border: 20px orange;}
+html{background-color: #C6C0B7;}
+#wrap{min-width:600px;}
+#page_header{border: 5px #000000; font-size: 150%; background-color: #D85A1A;}
+
+#page_body{font-size: 100%; background-color: #D85A1A; }
+
+#page_footer{font-size: 100%; background-color: #D85A1A;}
+
+
+#thread_link_name{font-size: 150%; min-width: 400px;}
+#thread_link_date{width: 100px;}
+#thread_link_count{width: 100px;}

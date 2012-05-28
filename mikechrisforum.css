@@ -1,10 +1,16 @@
 html{background-color: #C6C0B7;}
+
+a:link{color: #001040; text-decoration: none;}
+a:visited{color: #001040;text-decoration: none;}
+a:hover{color: #000000;text-decoration: underline;}
+
 #wrap{min-width:600px;}
 #page_header{border: 5px #000000; font-size: 150%; background-color: #D85A1A;}
+#login{text-align: right;}
 
 #page_body{font-size: 100%; background-color: #D85A1A; }
 
-#page_footer{font-size: 100%; background-color: #D85A1A;}
+#page_footer{font-size: 150%; background-color: #D85A1A;}
 
 
 table,th,td{border:1px solid black;}
@@ -18,3 +24,8 @@ table,th,td{border:1px solid black;}
 #post_item_content{min-width: 300px}
 #post_item_user{font-size: 150%; width: 200px;}
 #post_item_date{width: 100px;}
+
+#newpost_form{position: relative; left: 30px;}
+#newpost_content{width: 400px; height: 150px;}
+
+#site_info{font-size: 75%;}

@@ -8,20 +8,7 @@
 
 <body>
 <div id="wrap" >
-	<div id="page_header" >
-		<div id="login" style="text-align:right;">	
-			Welcome, Guest! please <a href="link">login</a> to post.
-		</div>
-
-		<div id="links">
-			<a href="http://people.oregonstate.edu/~fortnerm/CS-275-Project/">Home</a> 
-		</div>
-		
-		<div id="page_list">
-			Goto Page:<a href="link">1</a>, <a href="link">2</a>, <a href="link">3</a>, ... , <a href="link">6</a>, <a href="link">7</a>, <a href="link">8</a>
-		</div>
-		
-	</div>
+	<?php include "header.php" ?>
 	<br>
 	<div id="page_body">
 		<div id="thread_name"> 
@@ -34,23 +21,25 @@
 				<td id="table_header">Post Time</td>
 			</tr>
 			<tr id="post_item">
-				<td id="post_item_user">Admin</td>
+				<td id="post_item_user"><a href="">Admin</a></td>
 				<td id="post_item_content">Forum Rules:<br>1)don't be dick.<br>2)Do what the mods say.<br>3)see rules 1 and 2</td>
 				<td id="post_item_date">5/26/2012 9:18pm</td>
 			</tr>	
 			<tr id="post_item">
-				<td id="post_item_user">fortnerm
+				<td id="post_item_user"><a href="">fortnerm</a>
 				<td id="post_item_content">Jeez, these rules need some real work.</td>
 				<td id="post_item_date">5/27/2012 2:50pm</td>
 			</tr>	
 		</table>
+		<br>
+		<form id="newpost_form"action="newpost.php" method="post">
+			New Post:<br> <textarea id="newpost_content" name="content" rows=6 cols=50></textarea>
+			<br>
+			<input id="newpost_submit" type="submit">
+		</form>
 	</div>
 	<br>
-	<div id="page_footer">
-		<div id="page_list">
-			Goto Page:<a href="link">1</a>, <a href="link">2</a>, <a href="link">3</a>, ... , <a href="link">6</a>, <a href="link">7</a>, <a href="link">8</a>
-		</div>
-	</div>
+	<?php include "footer.php" ?>
 </div>
 </body>
 </html>

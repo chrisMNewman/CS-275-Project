@@ -1,13 +1,9 @@
 <div id="page_header" >
-	<div id="login">	
-		Welcome, Guest! please <a href="link">login</a> to post.
-	</div>
+	<span id="links">
+		<a href="/~fortnerm/CS-275-Project/"><img src="title_image.png"></a> 
+	</span>
 
-	<div id="links">
-		<a href="/~fortnerm/CS-275-Project/">Home</a> 
-	</div>
-	
-	<div id="page_list">
-		Goto Page:<a href="link">1</a>, <a href="link">2</a>, <a href="link">3</a>, ... , <a href="link">6</a>, <a href="link">7</a>, <a href="link">8</a>
-	</div>
+	<span id="login">	
+		Welcome, Guest! please <a href="link">login</a> to post.
+	</span>
 </div>

@@ -4,13 +4,13 @@ a:link{color: #001040; text-decoration: none;}
 a:visited{color: #001040;text-decoration: none;}
 a:hover{color: #000000;text-decoration: underline;}
 
-#wrap{min-width:600px;}
-#page_header{border: 5px #000000; font-size: 150%; background-color: #D85A1A;}
-#login{text-align: right;}
+#wrap{min-width:800px;}
+#page_header{border: 3px solid black; font-size: 150%; background-color: #D85A1A;}
+#login{float:right;}
 
-#page_body{font-size: 100%; background-color: #D85A1A; }
+#page_body{border: 3px solid black; font-size: 100%; background-color: #D85A1A; }
 
-#page_footer{font-size: 150%; background-color: #D85A1A;}
+#page_footer{border: 3px solid black; font-size: 150%; background-color: #D85A1A;}
 
 
 table,th,td{border:1px solid black;}

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Mike and Chris's CS275 Forum</title>
+<title>Mike and Chris's Super Forum</title>
 <link rel="stylesheet" type="text/css" href="mikechrisforum.css" />
 </head>
 

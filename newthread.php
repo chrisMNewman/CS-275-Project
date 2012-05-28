@@ -1,5 +1,7 @@
+
+<html>
 <head>
-	<title>New Thread</title>
+	<title>Mike and Chris's Super Forum</title>
 	<link rel="stylesheet" type="text/css" href="mikechrisforum.css" />
 </head>
 <body>
@@ -9,3 +11,4 @@
 		<input id="newpost_submit" type="submit">
 	</form>
 </body>
+</html>

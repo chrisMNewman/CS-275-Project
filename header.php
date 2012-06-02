@@ -4,6 +4,6 @@
 	</span>
 
 	<span id="login">	
-		Welcome, Guest! please <a href="link">login</a> to post.
+		Welcome, Guest! please <a href="newAccount.php">login</a> to post.
 	</span>
 </div>

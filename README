@@ -4,5 +4,30 @@ thread.html - view the posts in a particular thread, TODO implement database acc
 
 mikechrisforum.css - main stylesheet that should be made to work with all three pages
 
+register.php - registration page for new users
 
-my current plan is to have a hader and footer that are mostly the same between the three page types -mike
+common.php - contains php functions to be used in other pages, should be required at the top of each primary page (i.e. index, thread, etc)
+
+newuser.php - handler for registration form
+
+newthread.php - handler for newthread form
+
+header.php - header for the other pages, contains login/logout form and link to homepage
+
+footer.php -footer for the other pages, contains author info and link to homepage
+
+login.php/logout.php - handlers for login/logout forms
+
+
+Important:
+~~~~~~~~~~~~~~
+identifier.php - required to make homepage links work and to specify database.  this file is not on GIT because we each have different databases and site addresses
+
+thhis is my current identifier.php:
+<?php 
+$homepage = "http://web.engr.oregonstate.edu/~fortnerm/CS-275-Project/";
+$dbhost = 'oniddb.cws.oregonstate.edu';
+$dbname = 'fortnerm-db';
+$dbuser = 'fortnerm-db';
+$dbpass = 'KubP1OidG5uYDuBX';
+?>

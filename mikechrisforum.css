@@ -5,7 +5,7 @@ a:visited{color: #001040;text-decoration: none;}
 a:hover{color: #000000;text-decoration: underline;}
 
 #wrap{min-width:800px;}
-#page_header{border: 3px solid black; font-size: 150%; background-color: #D85A1A;}
+#page_header{border: 3px solid black; font-size: 125%; background-color: #D85A1A;}
 #login{float:right;}
 
 #page_body{border: 3px solid black; font-size: 100%; background-color: #D85A1A; }

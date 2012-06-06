@@ -20,17 +20,29 @@
 	<br>
 
 	<div id="page_body">
+		
+			
+				
+				
+			 ?>
+		
 	  Create new account:<br>
 
 	  <form id="newuser_form" action="newuser.php" method="post">
+	  	<?php 
+				if (isset($_GET['username_length'])) {
+					print('<div id="register_errors">Username must be between 4 and 30 characters</div>');} ?>
 	    <label for="newuser_name">Username</label>
 	    <input type="text" name="username" id="newuser_name" /><br>
+	    <?php if (isset($_GET['password_length'])) {
+					print('<div id="register_errors">Password must be between 8 and 32 characters</div>');} ?>
 
 	    <label for="newuser_password">Password</label>
 	    <input type="password" name="password" id="newuser_password" /><br>
-
-	    <label for="newuser_password">Confirm Password</label>
-	    <input type="password" name="passwrd_confirm" id="newuser_password" /><br>
+	    <?php if (isset($_GET['password_match'])) {
+					print('<div id="register_errors">Passwords did not match</div>');}?>
+	    <label for="newuser_confirm_password">Confirm Password</label>
+	    <input type="password" name="passwrd_confirm" id="newuser_confirm_password" /><br>
 
 	    <input type="submit" value="Submit">
 	  </form>

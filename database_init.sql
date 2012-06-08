@@ -63,4 +63,8 @@ VALUES ( 0, 3, '2012-05-06 01:42:01','Anything to do with programming and softwa
 #When posts are deleted, the next post that is created will have the same post number as the most recently deleted post. 
 #(For example, if post with post number 5 is deleted, the next post that is created will have post number 5). 
 #If threads are to be deleted, all posts with foreign keys pointing to those respective threads should also be deleted.
+<<<<<<< HEAD
 #Because threads must be owned by users, users should not be deleted at this time. The forum can hold one million users, so this shouldn’t be a problem.
+=======
+#Because threads must be owned by users, users should not be deleted at this time. The forum can hold one million users, so this shouldn’t be a problem.
+>>>>>>> work on register.php and newuser.php,

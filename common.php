@@ -1,5 +1,11 @@
 <?php
-include ("identifier.php");
+require ("identifier.php");
+
+$db = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+if (!$db) {
+    die('Connect Error (' . mysqli_connect_errno() . ') '
+            . mysqli_connect_error());
+}
 
 function curPageURL() {
 	 $pageURL = 'http';

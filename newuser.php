@@ -1,54 +1,17 @@
 <?php
 session_start(); 
-<<<<<<< HEAD
 require("common.php");
 
-if ((strlen($_POST['username']) < 4) or (strlen($_POST['username']) > 30)){
-	$username_length_error = true;
-}
-
-if ((strlen($_POST['password']) < 8) or (strlen($_POST['password']) > 32)){
-	$password_length_error = true;
-}
-
-if (strcmp($_POST['password'], $_POST['password_confirm']) != 0){
-	$password_match_error = true;
-}
-
-
-if (!($username_length_error or $password_length_error or $password_match_error)){
-
-	header( 'Location: '.$homepage ) ;
-}
-else{
-	$return_url = $homepage.'register.php?';
-
-	if ($username_length_error){
-		$return_url .= 'username_length_error=1&';
-	}
-
-if ($password_length_error){
-		$return_url .= 'password_length_error=1&';
-	}
-
-if ($password_match_error) != 0){
-		$return_url .= 'password_match_error=1&';
-	}
-
-    header( 'Location: '.$return_url ) ;
-=======
-include("common.php");
-
-$username = $_POST['username'];
-$password = $_POST['password'];
-$password_confirm = $_POST['password_confirm'];
+$username = $db->real_escape_string(trim($_POST['username']));
+$password = $db->real_escape_string(trim($_POST['password']));
+$password_confirm = $db->real_escape_string(trim($_POST['password_confirm']));
 
 if(empty($username) or empty($password) or empty($password_confirm)){
 	//empty field(s), return error message
 	exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'register.php?empty_field_error').'"/>'); 
 }
 else{ //no empty fields, attempt to validate form
-	if ((strlen($username) < 4) or (strlen($username) > 30)){
+	if ((strlen($username) < 4) or (strlen($username) > 32)){
 		$username_length_error = true;
 	}
 	else $username_length_error = false;
@@ -66,12 +29,22 @@ else{ //no empty fields, attempt to validate form
 	if (!($username_length_error or $password_length_error or $password_match_error)){
 		//form validated, check database
 
-		$query = 'SELECT COUNT(*) FROM `User` WHERE Screen_Name = '.$username;
+		$query = 'SELECT Screen_Name FROM User WHERE Screen_Name LIKE "'. $username.'"';
 		$result = $db->query($query);
-		$row = $result->fetch_row()
-	    if($row[0] > 0){
+	    if($result->num_rows > 0){
 	    	exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'register.php?username_taken') . '"/>');
 	    }
+	    else{ //username is not taken so add new user to the User table and generate values
+	    	$query = 'INSERT INTO `User` VALUES (null,"'.$username.'","'.date('Y-m-d').'","'.$password.'")';
+			$result = $db->query($query);
+			if (true){//$db->affected_rows() == 1){
+				exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'index.php?'.$db->error) . '"/>');
+			}
+			else{
+				exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'register.php?database_error') . '"/>');
+			}
+	    }
+
 
 		exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage) . '"/>'); 
 	}
@@ -95,6 +68,5 @@ else{ //no empty fields, attempt to validate form
 
 	    exit('<meta http-equiv="refresh" content="0; url=' . urldecode($return_url) . '"/>'); 
  	}
->>>>>>> work on register.php and newuser.php,
 }
 ?>

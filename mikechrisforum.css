@@ -8,6 +8,7 @@ a:hover{color: #000000;text-decoration: underline;}
 #page_header{border: 3px solid black; font-size: 125%; background-color: #D85A1A;}
 #login{float:right;}
 
+#login_errors{background-color: #EEEEEE; border: 1px solid red; color: red;}
 #register_errors{background-color: #EEEEEE; border: 5px solid red; color: red;}
 
 #page_body{border: 3px solid black; font-size: 100%; background-color: #D85A1A; }

@@ -3,11 +3,14 @@ require ("identifier.php");
 
 $db = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if (!$db) {
-    die('Connect Error (' . mysqli_connect_errno() . ') '
-            . mysqli_connect_error());
+    die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
 }
 
-function curPageURL() {
+function curPageURL(){
+	return strtok(curPageFullURL(), '?');
+}
+
+function curPageFullURL() {
 	 $pageURL = 'http';
 	 if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
 	 $pageURL .= "://";

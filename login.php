@@ -1,28 +1,24 @@
-
-
-<html><head><script type="text/javascript" charset="utf-8" src="http://web.engr.oregonstate.edu/~fortnerm/CS-275-Project/sha1.js"></script></head><body>
-
-
-<script type="text/javascript" charset="utf-8">
-server_hash = hex_hmac_sha1($_POST['server_time'], query_hash);
-
-}
-
-</script>
-
 <?php
 	session_start(); 
+	require("common.php");
 	
-	//TODO check password against hash in database
+	$username = $db->real_escape_string(trim($_POST['username']));
+	$password = $db->real_escape_string(trim($_POST['password_hash']));
 
+	$query = 'SELECT Password FROM User WHERE Screen_Name LIKE "'. $username.'"';
+	$result = $db->query($query);
+	if($result->num_rows != 1){
+	exit('<meta http-equiv="refresh" content="0; url=' . urldecode($_POST['return_url'].'?login_error') . '"/>');
+	}
+	while ($row = $result->fetch_assoc()){
+		$stored_password = $row['Password'];
+	}
 
-	//if($server_hash == $_POST['pwd_hash'])
-	//{
-	//	$_SESSION['username'] = $_POST['username']; 
-	//}
-	 print($_POST['username'].$_POST['password'].$_SESSION['username'].$_SESSION['pwd_hash'])
-    //header( 'Location: '.$_POST['return_url'] ) ;
+	if (strcmp($password, $stored_password) == 0){
+		$_SESSION['username'] = $username; 
+		exit('<meta http-equiv="refresh" content="0; url=' . urldecode($_POST['return_url']) . '"/>'); 
+	}
+	else {
+		exit('<meta http-equiv="refresh" content="0; url=' . urldecode($_POST['return_url'].'?login_error') . '"/>'); 
+	}
 ?>
-
-
-</body></html>

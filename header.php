@@ -1,24 +1,28 @@
-<script type="text/javascript" charset="utf-8" src=<?php print($homepage."sha1.js");?>></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/sha256.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
 <script type="text/javascript" charset="utf-8" >
-function validateLogin()
+function validateLoginForm()
 {
-form = document.forms["login_form"];
-salt = form.elements["server_salt"];
-time = form.elements["server_time"];
-pwd = form.elements["password"];
-hash = form.elements["pwd_hash"];
+	var login = document.forms["login_form"];
 
-pwd.value = '';
-var temp = str_hmac_sha1(salt.value, pwd.value);
-hash.value = str_hmac_sha1(time.value, temp); 
-alert(hash.value);
+	var name = login.elements["username"];
+	var pwd = login.elements["password"];
+	var salt = login.elements["server_salt"];
+	var pwd_hash = login.elements["password_hash"];
+
+	var hash = CryptoJS.SHA256(pwd.value + salt);
+
+	pwd_hash.value = hash.toString(CryptoJS.enc.Hex);
+	pwd.value = '';
+
+	return true;
 }
 </script>
 
 
 <div id="page_header" >
 	<span id="links">
-		<a href="<?php print($homepage); ?>"><img src="title_image.png"></a> 
+		<a href="<?php print($homepage.'index.php'); ?>"><img src="title_image.png"></a> 
 	</span>
 
 
@@ -31,21 +35,21 @@ alert(hash.value);
 	<input type="submit" value="Logout">
 </form>
 <?php } 
-	  else {  ?>
+	  else { ?>
 		
 			
-		<form id="login_form" action="login.php" method="post" 
-		      onsubmit="validateLogin();">
+		<form id="login_form" action="login.php" method="post" onsubmit="return validateLoginForm();">
+
 			Welcome, Guest! Please Login
 			<input type="text" id="login_name" name="username" value="Username" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"> 
 			<input type="password" id="login_password" name="password" value="Password" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"> 
 			<input type="hidden" name="return_url" value="<?php print(curPageURL());?>">
 			<input type="hidden" name="server_salt" value="<?php print((string)$server_salt);?>">
-			<input type="hidden" name="server_time" value="<?php print((string)time());?>">
-			<input type="hidden" name="pwd_hash">
+			<input type="hidden" name="password_hash">
 			<input type="submit" value="Login"> 
 			or <a href="register.php">Register</a> to post.
 		</form> 
+		<?php if (isset($_GET['login_error'])) { print('<span id="login_errors">Incorrect username or password</span>');} ?>
 	<?php } ?>
 	</span>
 

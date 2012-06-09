@@ -4,7 +4,7 @@ CREATE TABLE User(
 U_ID INT NOT NULL AUTO_INCREMENT,
 Screen_Name CHAR( 32 ) NOT NULL ,
 Join_Date DATE NOT NULL ,
-Password CHAR(32) NOT NULL ,
+Password CHAR(64) NOT NULL ,
 PRIMARY KEY ( U_ID )
 );
 CREATE TABLE Post(
@@ -29,13 +29,13 @@ ALTER TABLE Post ADD FOREIGN KEY ( T_ID ) REFERENCES Thread( T_ID );
 ALTER TABLE Post ADD FOREIGN KEY ( U_ID ) REFERENCES User( U_ID );
 #(Create a few users)
 INSERT INTO User
-VALUES ( null, 'Admin', '2006-12-25', 'abc') ;# Affected rows: 1
+VALUES ( null, 'Admin', '2006-12-25', '14684aa1886ab63c06f639a87daeb10db558f77e4288092c6ae6ea781c94ce15') ;# Affected rows: 1
 INSERT INTO User
-VALUES ( null, 'TRexRawr', '2007-02-14', 'abc') ;# Affected rows: 1
+VALUES ( null, 'TRexRawr', '2007-02-14', '14684aa1886ab63c06f639a87daeb10db558f77e4288092c6ae6ea781c94ce15') ;# Affected rows: 1
 INSERT INTO User
-VALUES ( null, 'Turtle4', '2010-11-29', 'abc') ;# Affected rows: 1
+VALUES ( null, 'Turtle4', '2010-11-29', '14684aa1886ab63c06f639a87daeb10db558f77e4288092c6ae6ea781c94ce15') ;# Affected rows: 1
 INSERT INTO User
-VALUES ( null, 'MikeWozowski', '1990-07-15', 'abc') ;# Affected rows: 1
+VALUES ( null, 'MikeWozowski', '1990-07-15', '14684aa1886ab63c06f639a87daeb10db558f77e4288092c6ae6ea781c94ce15') ;# Affected rows: 1
 #(Create a few threads)
 INSERT INTO Thread
 VALUES ( null, 1 , '2012-05-05 02:49:41', 'General/FAQ');

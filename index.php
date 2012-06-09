@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php session_start(); 
-		require("common.php"); ?>
+		require("common.php"); 
+		?>
 <html>
 <head>
 <title>Mike and Chris's Super Forum</title>

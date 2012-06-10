@@ -2,6 +2,10 @@
 <?php 
 session_start(); 
 require("common.php"); 
+
+if(!empty($_SESSION['U_ID'])){
+	exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage) . '"/>'); 
+}
 ?>
 
 <html>
@@ -72,11 +76,7 @@ function validateNewuserForm()
 </head>
 
 <body><div id="wrap" >
-	<div id="page_header" >
-	<span id="links">
-		<a href="<?php print($homepage); ?>"><img src="title_image.png"></a> 
-  </span></div>
-
+	<?php include('header.php'); ?>
 	<br>
 
 	<div id="page_body">

@@ -1,20 +1,31 @@
-index.html - mainpage that allows viewing of available threads
-	createthread.php - page with form for creating threads
-		newthread.php - handler for newthread form in createthread.php
 
-thread.html - view the posts in a particular thread, TODO implement database access to make this actually work
-	newpost.php - handler for the newpost form in thread.php
-	posteditor.php - handler for the edit button in thread.php, a page with a form for editing post content
-		editpost.php - handler for the form in posteditor.php
-	deletepost.php - handler for the delete post button in thread.php
-	deletethread.php - handler for the delete thread button in thread.php
+index.php - mainpage that allows viewing of available threads
+	
+-createthread.php - page with form for creating threads
+		
+--newthread.php - handler for newthread form in createthread.php
+
+thread.php - view the posts in a particular thread, TODO implement database access to make this actually work
+	
+-newpost.php - handler for the newpost form in thread.php
+	
+-posteditor.php - handler for the edit button in thread.php, a page with a form for editing post content
+		
+--editpost.php - handler for the form in posteditor.php
+	
+-deletepost.php - handler for the delete post button in thread.php
+	
+-deletethread.php - handler for the delete thread button in thread.php
 
 register.php - registration page for new users
-	newuser.php - handler for registration form
+	
+-newuser.php - handler for registration form
 
 header.php - header for the other pages, contains login/logout form and link to homepage
-	login.php - handler for login form in header
-	logout.php - handler for logout button in header
+	
+-login.php - handler for login form in header
+	
+-logout.php - handler for logout button in header
 
 footer.php -footer for the other pages, contains author info and link to homepage
 
@@ -24,13 +35,16 @@ mikechrisforum.css - main stylesheet that should be made to work with all three 
 
 identifier.php - required to make homepage links work and to specify database.  this file is not on GIT because we each have different databases and site addresses
 
+database_init.sql - query file that can be imported into phpmyadmin directly to generate and example database for testing
+
+
 example identifier.php file:
 
-<?php 
-$homepage = "http://web.engr.oregonstate.edu/~fortnerm/CS-275-Project/";
-$dbhost = 'oniddb.cws.oregonstate.edu';
-$dbname = 'fortnerm-db';
-$dbuser = 'fortnerm-db';
-$dbpass = 'KubP1OidG5uYDuBX';
-$server_salt = 0xceb1606c ;
-?>
+	<?php 
+	$homepage = "http://web.engr.oregonstate.edu/~fortnerm/CS-275-Project/";
+	$dbhost = 'oniddb.cws.oregonstate.edu';
+	$dbname = 'fortnerm-db';
+	$dbuser = 'fortnerm-db';
+	$dbpass = 'KubP1OidG5uYDuBX';
+	$server_salt = 0xceb1606c ;
+	?>

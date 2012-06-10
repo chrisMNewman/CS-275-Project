@@ -30,7 +30,7 @@ function validateLoginForm()
 		<?php if (isset($_SESSION['username'])) {?>
 
 		<form action="logout.php" method="post">
-			Welcome, <?php print($_SESSION['username'])?>! 
+			Welcome, <a href="user.php?U_ID=<?php print($_SESSION['U_ID']); ?>"><?php print($_SESSION['username']);?></a>! 
 			<input type="hidden" name="return_url" value="<?php print(curPageURL())?>">
 			<input type="submit" value="Logout">
 		</form>

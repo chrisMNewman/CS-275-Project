@@ -18,10 +18,15 @@ if ($db->error){
 }
 
 $query = 'SELECT COUNT(*) FROM Post WHERE T_ID='.$T_ID;
-$result = $db->query($query);
-$row = $result->fetch_row();
+if($result = $db->query($query)){
+	$row = $result->fetch_row();
+	$pagecount = (int)(($row[0]+$per_page-1)/$per_page);
+}
+else {
+	$pagecount = 1;
+}
+
 $per_page = $_SESSION['post_per_page'];
-$pagecount = (int)(($row[0]+$per_page-1)/$per_page);
 
 exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'thread.php?T_ID='.$T_ID.'&page='.$pagecount) . '"/>'); 
 ?>

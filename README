@@ -35,8 +35,9 @@ mikechrisforum.css - main stylesheet that should be made to work with all three 
 
 identifier.php - required to make homepage links work and to specify database.  this file is not on GIT because we each have different databases and site addresses
 
-database_init.sql - query file that can be imported into phpmyadmin directly to generate and example database for testing
+database_init.sql - query file that can be imported into phpmyadmin directly to initialize the required tables and the admin user
 
+database_example.sql - query file that can be imported into phpmyadmin directly to generate an example database for testing
 
 example identifier.php file:
 

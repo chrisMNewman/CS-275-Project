@@ -26,16 +26,18 @@ if(count($url_arr) >= 2){
 }
 
 $query = 'SELECT U_ID, Password FROM User WHERE Screen_Name LIKE "'. $username.'"';
-$result = $db->query($query);
-if($result->num_rows != 1){
+if($result = $db->query($query)){
+	if($result->num_rows != 1){
+		$result->close();
+		exit('<meta http-equiv="refresh" content="0; url=' . urldecode($return_url.'login_error') . '"/>');
+	}
+	while ($row = $result->fetch_assoc()){
+		$stored_password = $row['Password'];
+		$U_ID = $row['U_ID'];
+	}
 	$result->close();
-	exit('<meta http-equiv="refresh" content="0; url=' . urldecode($return_url.'login_error') . '"/>');
 }
-while ($row = $result->fetch_assoc()){
-	$stored_password = $row['Password'];
-	$U_ID = $row['U_ID'];
-}
-$result->close();
+
 
 if (strcmp($password, $stored_password) == 0){
 	$_SESSION['username'] = $username; 

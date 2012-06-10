@@ -31,10 +31,15 @@ if (isset($_GET['per_page'])) {
 			<?php 
 			$page_list = 'Goto Page: ';
 			$query = 'SELECT COUNT(*) FROM Thread';
-			$result = $db->query($query);
-			$row = $result->fetch_row();
-			$pagecount = ($row[0]+$per_page-1)/$per_page;
-			$result->close();
+			if($result = $db->query($query)){
+				$row = $result->fetch_row();
+				$pagecount = ($row[0]+$per_page-1)/$per_page;
+				$result->close();
+			}
+			else{
+				$pagecount = 1;
+			}
+			
 			
 			for ($i = 1; $i <= $pagecount; $i++){
 				if($i != 1){$page_list .= ', ';}
@@ -69,10 +74,18 @@ if (isset($_GET['per_page'])) {
 						<td id="thread_link_user">%s</td>
 						<td id="thread_link_date">%s</td>
 						</tr>';
-			$result = $db->query($query);
-			while($row = $result->fetch_assoc()){
-				printf($row_format, $row['T_ID'], $row['Title'], $row['COUNT(*)'] ,$row['Creation_Time'], $row['Screen_Name'], $row['MAX(Post.Last_Edit_Time)']);
+			if($result = $db->query($query)){
+				if ($result->numrows == 0){
+					printf($row_format, '', 'No threads yet, click "New Thread to begin.', '0' , 'Never', 'Admin', 'Never');
+				}
+				while($row = $result->fetch_assoc()){
+					printf($row_format, $row['T_ID'], $row['Title'], $row['COUNT(*)'] ,$row['Creation_Time'], $row['Screen_Name'], $row['MAX(Post.Last_Edit_Time)']);
+				}
 			}
+			else{
+				printf($row_format, '', 'Database Error, please contact administrator.', '0' , 'Never', 'Admin', 'Never');
+			}
+			
 			?>
 		</table>
 		<div id="page_list">

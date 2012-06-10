@@ -1,18 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php session_start(); 
-		require("common.php"); 
+require("common.php"); 
 
-		$curpage = '1';
-		if (isset($_GET['page'])) {$curpage = $_GET['page'];}
+$curpage = '1';
+if (isset($_GET['page'])) {$curpage = $_GET['page'];}
 
-		if (empty($_SESSION['thread_per_page'])) {
-			$_SESSION['thread_per_page'] = 10;
-		}
-		$per_page = $_SESSION['thread_per_page'];
-		if (isset($_GET['per_page'])) {
-			$per_page = $_GET['per_page'];
-			$_SESSION['thread_per_page']= $per_page;}
-		?>
+if (empty($_SESSION['thread_per_page'])) {
+	$_SESSION['thread_per_page'] = 10;
+}
+$per_page = $_SESSION['thread_per_page'];
+if (isset($_GET['per_page'])) {
+	$per_page = $_GET['per_page'];
+	$_SESSION['thread_per_page']= $per_page;}
+?>
+
 <html>
 <head>
 <title>Mike and Chris's Super Forum</title>

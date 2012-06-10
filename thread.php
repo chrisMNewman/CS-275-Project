@@ -1,21 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php session_start(); 
-		require("common.php"); 
+<?php 
+session_start(); 
+require("common.php"); 
 
-		$T_ID = '1';
-		if (isset($_GET['T_ID'])) {$T_ID = $_GET['T_ID'];}
+$T_ID = '1';
+if (isset($_GET['T_ID'])) {$T_ID = $_GET['T_ID'];}
 
-		$curpage = '1';
-		if (isset($_GET['page'])) {$curpage = $_GET['page'];}
+$curpage = '1';
+if (isset($_GET['page'])) {$curpage = $_GET['page'];}
 
-		if (empty($_SESSION['post_per_page'])) {
-			$_SESSION['post_per_page'] = 10;
-		}
-		$per_page = $_SESSION['post_per_page'];
-		if (isset($_GET['per_page'])) {
-			$per_page = $_GET['per_page'];
-			$_SESSION['post_per_page']= $per_page;}
-		?>
+if (empty($_SESSION['post_per_page'])) {
+	$_SESSION['post_per_page'] = 10;
+}
+$per_page = $_SESSION['post_per_page'];
+if (isset($_GET['per_page'])) {
+	$per_page = $_GET['per_page'];
+	$_SESSION['post_per_page']= $per_page;}
+?>
+
 <html>
 <head>
 <title>Mike and Chris's Super Forum</title>

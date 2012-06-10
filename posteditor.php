@@ -1,8 +1,7 @@
 <?php 
-	session_start(); 
-	require("common.php"); 
+session_start(); 
+require("common.php"); 
 ?>
-
 
 <html>
 <head>
@@ -15,19 +14,19 @@
 
 	<div id="page_body">
 		<?php 
-			$P_Number = $db->real_escape_string(trim($_POST['P_Number']));
-			$curpage = $db->real_escape_string(trim($_POST['curpage']));
+		$P_Number = $db->real_escape_string(trim($_POST['P_Number']));
+		$curpage = $db->real_escape_string(trim($_POST['curpage']));
 
-			if(empty($P_Number)){
-				exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage) . '"/>'); 
-			}
+		if(empty($P_Number)){
+			exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage) . '"/>'); 
+		}
 
-			$query = 'SELECT Content, T_ID FROM Post WHERE P_Number='.$P_Number;
-			$result = $db->query($query);
-			$row = $result->fetch_row();
-			$content = $row[0];
-			$T_ID = $row[1];
-			$result->close();
+		$query = 'SELECT Content, T_ID FROM Post WHERE P_Number='.$P_Number;
+		$result = $db->query($query);
+		$row = $result->fetch_row();
+		$content = $row[0];
+		$T_ID = $row[1];
+		$result->close();
 		?>
 		<form id="editpost_form" action="editpost.php" method="post">
 			<label for="editpost_content">Edit Post:</label><br> 

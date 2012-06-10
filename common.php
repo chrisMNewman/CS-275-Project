@@ -6,6 +6,7 @@ if (!$db) {
     die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
 }
 
+//this function was found freely shared online
 function curPageURL() {
 	 $pageURL = 'http';
 	 if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
@@ -16,9 +17,5 @@ function curPageURL() {
 	  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 	 }
 	 return $pageURL;
-	}
-
-function curPageName() {
-	 return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
-	}
+}
 ?>

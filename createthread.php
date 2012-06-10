@@ -1,8 +1,7 @@
 <?php 
-	session_start(); 
-	require("common.php"); 
+session_start(); 
+require("common.php"); 
 ?>
-
 
 <html>
 <head>

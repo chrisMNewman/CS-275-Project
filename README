@@ -1,33 +1,36 @@
 index.html - mainpage that allows viewing of available threads
+	createthread.php - page with form for creating threads
+		newthread.php - handler for newthread form in createthread.php
 
 thread.html - view the posts in a particular thread, TODO implement database access to make this actually work
-
-mikechrisforum.css - main stylesheet that should be made to work with all three pages
+	newpost.php - handler for the newpost form in thread.php
+	posteditor.php - handler for the edit button in thread.php, a page with a form for editing post content
+		editpost.php - handler for the form in posteditor.php
+	deletepost.php - handler for the delete post button in thread.php
+	deletethread.php - handler for the delete thread button in thread.php
 
 register.php - registration page for new users
-
-common.php - contains php functions to be used in other pages, should be required at the top of each primary page (i.e. index, thread, etc)
-
-newuser.php - handler for registration form
-
-newthread.php - handler for newthread form
+	newuser.php - handler for registration form
 
 header.php - header for the other pages, contains login/logout form and link to homepage
+	login.php - handler for login form in header
+	logout.php - handler for logout button in header
 
 footer.php -footer for the other pages, contains author info and link to homepage
 
-login.php/logout.php - handlers for login/logout forms
+common.php - contains php functions to be used in other pages, should be required at the top of each primary page (i.e. index, thread, etc)
 
+mikechrisforum.css - main stylesheet that should be made to work with all three pages
 
-Important:
-~~~~~~~~~~~~~~
 identifier.php - required to make homepage links work and to specify database.  this file is not on GIT because we each have different databases and site addresses
 
-thhis is my current identifier.php:
+example identifier.php file:
+
 <?php 
 $homepage = "http://web.engr.oregonstate.edu/~fortnerm/CS-275-Project/";
 $dbhost = 'oniddb.cws.oregonstate.edu';
 $dbname = 'fortnerm-db';
 $dbuser = 'fortnerm-db';
 $dbpass = 'KubP1OidG5uYDuBX';
+$server_salt = 0xceb1606c ;
 ?>

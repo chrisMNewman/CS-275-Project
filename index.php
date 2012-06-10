@@ -75,7 +75,7 @@ if (isset($_GET['per_page'])) {
 						<td id="thread_link_date">%s</td>
 						</tr>';
 			if($result = $db->query($query)){
-				if ($result->numrows == 0){
+				if ($result->num_rows == 0){
 					printf($row_format, '', 'No threads yet, click "New Thread to begin.', '0' , 'Never', 'Admin', 'Never');
 				}
 				while($row = $result->fetch_assoc()){

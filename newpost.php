@@ -21,6 +21,7 @@ $query = 'SELECT COUNT(*) FROM Post WHERE T_ID='.$T_ID;
 if($result = $db->query($query)){
 	$row = $result->fetch_row();
 	$pagecount = (int)(($row[0]+$per_page-1)/$per_page);
+	if($pagecount == 0) {$pagecount = 1;}
 }
 else {
 	$pagecount = 1;

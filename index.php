@@ -5,8 +5,13 @@
 		$curpage = '1';
 		if (isset($_GET['page'])) {$curpage = $_GET['page'];}
 
-		$per_page = '10';
-		if (isset($_GET['per_page'])) {$per_page = $_GET['per_page'];}
+		if (empty($_SESSION['thread_per_page'])) {
+			$_SESSION['thread_per_page'] = 10;
+		}
+		$per_page = $_SESSION['thread_per_page'];
+		if (isset($_GET['per_page'])) {
+			$per_page = $_GET['per_page'];
+			$_SESSION['thread_per_page']= $per_page;}
 		?>
 <html>
 <head>
@@ -55,7 +60,13 @@
 			<?php  
 			$query = 'SELECT Thread.T_ID, Title, Creation_Time, COUNT(*), Screen_Name, MAX(Post.Last_Edit_Time) FROM Thread, Post ,User WHERE Thread.T_ID=Post.T_ID AND Thread.U_ID=User.U_ID GROUP BY Thread.T_ID ORDER BY MAX(Post.Last_Edit_Time) DESC LIMIT '.(($curpage-1)*$per_page).','.$per_page;
 			//print($query);
-			$row_format = '<tr id="thread_link"><td id="thread_link_name"><a href="thread.php?T_ID=%s">%s</a></td><td id="thread_link_count">Posts: %s</td><td id="thread_link_date">%s</td><td id="thread_link_user">%s</td><td id="thread_link_date">%s</td></tr>';
+			$row_format = 
+						'<tr id="thread_link">
+						<td id="thread_link_name"><a href="thread.php?T_ID=%s">%s</a></td>
+						<td id="thread_link_count">Posts: %s</td><td id="thread_link_date">%s</td>
+						<td id="thread_link_user">%s</td>
+						<td id="thread_link_date">%s</td>
+						</tr>';
 			$result = $db->query($query);
 			while($row = $result->fetch_assoc()){
 				printf($row_format, $row['T_ID'], $row['Title'], $row['COUNT(*)'] ,$row['Creation_Time'], $row['Screen_Name'], $row['MAX(Post.Last_Edit_Time)']);

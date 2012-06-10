@@ -33,6 +33,8 @@
 		</form>
 		<?php } ?>
 	</div>
+	<br>
+	<?php include "footer.php" ?> <br>
 </div>
 </body>
 </html>

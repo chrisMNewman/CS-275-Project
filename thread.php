@@ -8,8 +8,13 @@
 		$curpage = '1';
 		if (isset($_GET['page'])) {$curpage = $_GET['page'];}
 
-		$per_page = '10';
-		if (isset($_GET['per_page'])) {$per_page = $_GET['per_page'];}
+		if (empty($_SESSION['post_per_page'])) {
+			$_SESSION['post_per_page'] = 10;
+		}
+		$per_page = $_SESSION['post_per_page'];
+		if (isset($_GET['per_page'])) {
+			$per_page = $_GET['per_page'];
+			$_SESSION['post_per_page']= $per_page;}
 		?>
 <html>
 <head>
@@ -61,14 +66,41 @@
 				<td id="table_header">User</td>
 				<td id="table_header">Content</td>
 				<td id="table_header">Post Time</td>
+				<td id="table_header">Edited At</td>
+				<td id="table_header"></td>
 			</tr>
 			<?php  
-			$query = 'SELECT User.U_ID, Screen_Name, Content, Post_Time FROM Post NATURAL JOIN User WHERE T_ID='.$T_ID.' ORDER BY Post_Time ASC LIMIT '.(($curpage-1)*$per_page).','.$per_page;
-			//print($query);
-			$row_format = '<tr id="post_item"><td id="post_item_user"><a href="user.php?U_ID=%s">%s</a></td><td id="post_item_content">%s</td><td id="post_item_date">%s</td></tr>';
+			$query = 'SELECT User.U_ID, P_Number, Screen_Name, Content, Post_Time, Last_Edit_Time FROM Post NATURAL JOIN User WHERE T_ID='.$T_ID.' ORDER BY Post_Time ASC LIMIT '.(($curpage-1)*$per_page).','.$per_page;
+			print($query);
+			$row_format = 
+						'<tr id="post_item">
+						<td id="post_item_user"><a href="user.php?U_ID=%s">%s</a></td>
+						<td id="post_item_content">%s</td>
+						<td id="post_item_date">%s</td>
+						<td id="post_item_date">%s</td>
+						<td id="post_item_buttons">%s</td>
+						</tr>';
 			$result = $db->query($query);
 			while($row = $result->fetch_assoc()){
-				printf($row_format, $row['U_ID'], $row['Screen_Name'], $row['Content'] ,$row['Post_Time']);
+				if($_SESSION['U_ID'] == $row['U_ID']){
+					$buttons = 
+							'<form action="posteditor.php" method="post">
+							<input type="hidden" name="P_Number" value="'.$row['P_Number'].'">
+							<input type="hidden" name="curpage" value="'.$curpage.'">
+							<input type="submit" value="Edit">
+							</form>
+							<form action="deletepost.php" method="post">
+							<input type="hidden" name="P_Number" value="'.$row['P_Number'].'">
+							<input type="hidden" name="T_ID" value="'.$T_ID.'">
+							<input type="hidden" name="curpage" value="'.$curpage.'">
+							<input type="submit" value="Delete">
+							</form>';
+				}
+				else{
+					$buttons = '';
+				}
+
+				printf($row_format, $row['U_ID'], $row['Screen_Name'], $row['Content'] ,$row['Post_Time'],$row['Last_Edit_Time'], $buttons);
 			}
 			?>
 		</table>
@@ -84,7 +116,6 @@
 			New Post:<br> <textarea id="newpost_content" name="content" rows=6 cols=50></textarea>
 			<br>
 			<input type="hidden" name="T_ID" value="<?php print($T_ID); ?>">
-			<input type="hidden" name="per_page" value="<?php print($per_page); ?>">
 			<input id="newpost_submit" type="submit">
 		</form>
 		<?php } ?>

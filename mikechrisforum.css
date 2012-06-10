@@ -4,12 +4,15 @@ a:link{color: #001040; text-decoration: none;}
 a:visited{color: #001040;text-decoration: none;}
 a:hover{color: #000000;text-decoration: underline;}
 
+form {margin: 0px 0px 0px 0px; }
+
 #wrap{min-width:800px;}
 #page_header{border: 3px solid black; font-size: 125%; background-color: #D85A1A;}
 #login{float:right;}
 
 #login_errors{background-color: #EEEEEE; border: 1px solid red; color: red;}
 #register_errors{background-color: #EEEEEE; border: 5px solid red; color: red;}
+#errors_panel{background-color: #EEEEEE; border: 5px solid red; color: red;}
 
 #page_body{border: 3px solid black; font-size: 100%; background-color: #D85A1A; }
 
@@ -29,6 +32,11 @@ table,th,td{border:1px solid black;}
 #post_item_content{min-width: 300px}
 #post_item_user{font-size: 150%; width: 200px;}
 #post_item_date{width: 100px;}
+#post_item_buttons table,
+#post_item_buttons td,
+#post_item_buttons th{border: 0px solid black;}
+
+
 
 #newpost_form{position: relative; left: 30px;}
 #newpost_content{width: 400px; height: 150px;}

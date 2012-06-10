@@ -15,9 +15,7 @@
 
 	<div id="page_body">
 
-		<?php 
-		print($_GET['database_error']);
-
+		<?php
 		if(!isset($_SESSION['U_ID'])){
 			print('Please login to post');
 		}

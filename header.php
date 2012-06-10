@@ -47,9 +47,10 @@ function validateLoginForm()
 			<input type="hidden" name="server_salt" value="<?php print((string)$server_salt);?>">
 			<input type="hidden" name="password_hash">
 			<input type="submit" value="Login"> 
-			or <a href="register.php">Register</a> to post.
+			or <a href="register.php">Register</a> to post. <br>
+			<?php if (isset($_GET['login_error'])) { print('<span id="login_errors">Incorrect username or password</span>');} ?>
 		</form> 
-		<?php if (isset($_GET['login_error'])) { print('<span id="login_errors">Incorrect username or password</span>');} ?>
+		
 	<?php } ?>
 	</span>
 

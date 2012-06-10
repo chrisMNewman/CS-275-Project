@@ -29,12 +29,20 @@
 	<div id="page_body">
 		<div id="thread_name"> 
 			<?php 
-			$query = 'SELECT Title FROM Thread WHERE T_ID='.$T_ID;
+			$query = 'SELECT Title, U_ID FROM Thread WHERE T_ID='.$T_ID;
 			$result = $db->query($query);
 			$row = $result->fetch_row();
-			$title = ($row[0]);
+			$title = $row[0];
+			$owner = $row[1];
 			$result->close();
 			print($title);
+			if ($_SESSION['U_ID'] == $owner){
+				$buttons = '<form id="deletethread_form" action="deletethread.php" method="post">
+							<input type="hidden" name="T_ID" value="'.$T_ID.'">
+							<input type="submit" value="Delete Thread">
+							</form>';
+				print($buttons);
+			}
 			?>
 		</div>
 		<div id="page_list">
@@ -67,11 +75,11 @@
 				<td id="table_header">Content</td>
 				<td id="table_header">Post Time</td>
 				<td id="table_header">Edited At</td>
-				<td id="table_header"></td>
+				<td id="table_header">Options</td>
 			</tr>
 			<?php  
 			$query = 'SELECT User.U_ID, P_Number, Screen_Name, Content, Post_Time, Last_Edit_Time FROM Post NATURAL JOIN User WHERE T_ID='.$T_ID.' ORDER BY Post_Time ASC LIMIT '.(($curpage-1)*$per_page).','.$per_page;
-			print($query);
+			//print($query);
 			$row_format = 
 						'<tr id="post_item">
 						<td id="post_item_user"><a href="user.php?U_ID=%s">%s</a></td>
@@ -84,17 +92,17 @@
 			while($row = $result->fetch_assoc()){
 				if($_SESSION['U_ID'] == $row['U_ID']){
 					$buttons = 
-							'<form action="posteditor.php" method="post">
+							'<table><tr><td><form action="posteditor.php" method="post">
 							<input type="hidden" name="P_Number" value="'.$row['P_Number'].'">
 							<input type="hidden" name="curpage" value="'.$curpage.'">
 							<input type="submit" value="Edit">
-							</form>
+							</form></td><td>
 							<form action="deletepost.php" method="post">
 							<input type="hidden" name="P_Number" value="'.$row['P_Number'].'">
 							<input type="hidden" name="T_ID" value="'.$T_ID.'">
 							<input type="hidden" name="curpage" value="'.$curpage.'">
 							<input type="submit" value="Delete">
-							</form>';
+							</form></td></tr></table>';
 				}
 				else{
 					$buttons = '';

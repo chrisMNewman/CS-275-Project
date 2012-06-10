@@ -98,7 +98,7 @@ function validateNewuserForm()
 
 		<input type="hidden" name="password_hash"/>
 		<input type="hidden" name="server_salt" value="<?php print($server_salt);?>"/>
-	    <input type="submit" value="Submit"/>
+	    <input type="submit" value="Register"/>
 	  </form>
 
   </div>

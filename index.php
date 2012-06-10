@@ -24,6 +24,7 @@
 <div id="wrap" >
 	<?php include "header.php" ?>
 	<br>
+
 	<div id="page_body">
 		<div id="page_list">
 			<?php 

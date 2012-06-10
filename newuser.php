@@ -5,6 +5,10 @@ require("common.php");
 $username = $db->real_escape_string(trim($_POST['username']));
 $password = $db->real_escape_string(trim($_POST['password_hash']));
 
+if(empty($username) or empty($password)){
+	exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage) . '"/>'); 
+}
+
 //check database for username
 
 $query = 'SELECT Screen_Name FROM User WHERE Screen_Name LIKE "'. $username.'"';

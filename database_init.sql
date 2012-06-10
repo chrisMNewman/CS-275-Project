@@ -49,13 +49,13 @@ VALUES ( null, 3 , '2012-05-06 01:33:30', 'Software Development') ;# Affected ro
 INSERT INTO Post
 VALUES ( null, 1, 1, '2012-05-06 01:37:13', '2012-05-06 01:37:13', 'This is the general and FAQ page! Feel free to talk about general things and ask questions!') ;# Affected rows: 1
 INSERT INTO Post
-VALUES ( null, 1, 1, '2012-05-06 01:39:25','2012-05-06 01:39:25', 'This is the off-topic page. Here you can talk about anything you want, so long as it has little to do with computers or software!') ;# Affected rows: 1
+VALUES ( null, 2, 1, '2012-05-06 01:39:25','2012-05-06 01:39:25', 'This is the off-topic page. Here you can talk about anything you want, so long as it has little to do with computers or software!') ;# Affected rows: 1
 INSERT INTO Post
-VALUES ( null, 2, 1, '2012-05-06 01:40:38', '2012-05-06 01:40:38', 'Here you can discuss any problems with you computer, whether they be problems related to hardware or software.') ;# Affected rows: 1
+VALUES ( null, 3, 1, '2012-05-06 01:40:38', '2012-05-06 01:40:38', 'Here you can discuss any problems with you computer, whether they be problems related to hardware or software.') ;# Affected rows: 1
 INSERT INTO Post
-VALUES ( null, 2, 3, '2012-05-06 01:37:13', '2012-05-06 01:37:13', 'How do I do the thing?') ;# Affected rows: 1
+VALUES ( null, 3, 2, '2012-05-06 01:37:13', '2012-05-06 04:37:13', 'How do I do the thing?') ;# Affected rows: 1
 INSERT INTO Post
-VALUES ( null, 3, 2, '2012-05-06 01:42:01','2012-05-06 01:42:01','Anything to do with programming and software development is discussed here. You can talk about you favorite languages, or share code to impress you friends and frighten your enemies!') ;# Affected rows: 1
+VALUES ( null, 4, 3, '2012-05-06 01:42:01','2012-05-06 01:42:01','Anything to do with programming and software development is discussed here. You can talk about you favorite languages, or share code to impress you friends and frighten your enemies!') ;# Affected rows: 1
 
 
 #To update any of the entities, make sure that any foreign keys point to existing primary keys of other entities. 

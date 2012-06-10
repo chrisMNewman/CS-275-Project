@@ -48,24 +48,24 @@
 			<tr id="thread_link">
 				<td id="table_header">Thread Title</td>
 				<td id="table_header">Post Count</td>
-				<td id="table_header">Last Post</td>
+				<td id="table_header">Created At</td>
+				<td id="table_header">Created By</td>
+				<td id="table_header">Last Edit At</td>
 			</tr>	
 			<?php  
-			$query = 'SELECT * FROM Thread ORDER BY Creation_Time DESC LIMIT '.(($curpage-1)*$per_page).','.$per_page;
-			$row_format = '<tr id="thread_link"><td id="thread_link_name"><a href="thread.php?T_ID=%s">%s</a></td><td id="thread_link_count">Posts: %s</td><td id="thread_link_date">%s</td></tr>';
-			$result_a = $db->query($query);
-			while($row = $result_a->fetch_assoc()){
-				$query = 'SELECT COUNT(*) FROM Post WHERE T_ID ='.$row['T_ID'];
-				$result_b = $db->query($query);
-				$count = $result_b->fetch_row();
-				printf($row_format, $row['T_ID'], $row['Title'], $count[0] ,$row['Creation_Time']);
+			$query = 'SELECT Thread.T_ID, Title, Creation_Time, COUNT(*), Screen_Name, MAX(Post.Last_Edit_Time) FROM Thread, Post ,User WHERE Thread.T_ID=Post.T_ID AND Thread.U_ID=User.U_ID GROUP BY Thread.T_ID ORDER BY MAX(Post.Last_Edit_Time) DESC LIMIT '.(($curpage-1)*$per_page).','.$per_page;
+			//print($query);
+			$row_format = '<tr id="thread_link"><td id="thread_link_name"><a href="thread.php?T_ID=%s">%s</a></td><td id="thread_link_count">Posts: %s</td><td id="thread_link_date">%s</td><td id="thread_link_user">%s</td><td id="thread_link_date">%s</td></tr>';
+			$result = $db->query($query);
+			while($row = $result->fetch_assoc()){
+				printf($row_format, $row['T_ID'], $row['Title'], $row['COUNT(*)'] ,$row['Creation_Time'], $row['Screen_Name'], $row['MAX(Post.Last_Edit_Time)']);
 			}
 			?>
 		</table>
 		<div id="page_list">
 			<?php print($page_list); ?>
 		</div>
-		<form id="newthread_form" action="newthread.php" method="get">
+		<form id="newthread_form" action="createthread.php" method="get">
 			<input type="submit" value="New Thread">
 
 		</form>

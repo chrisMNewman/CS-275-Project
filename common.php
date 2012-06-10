@@ -6,11 +6,7 @@ if (!$db) {
     die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
 }
 
-function curPageURL(){
-	return strtok(curPageFullURL(), '?');
-}
-
-function curPageFullURL() {
+function curPageURL() {
 	 $pageURL = 'http';
 	 if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
 	 $pageURL .= "://";

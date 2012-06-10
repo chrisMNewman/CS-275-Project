@@ -1,6 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php session_start(); 
-		require("common.php"); ?>
+		require("common.php"); 
+
+		$T_ID = '1';
+		if (isset($_GET['T_ID'])) {$T_ID = $_GET['T_ID'];}
+
+		$curpage = '1';
+		if (isset($_GET['page'])) {$curpage = $_GET['page'];}
+
+		$per_page = '10';
+		if (isset($_GET['per_page'])) {$per_page = $_GET['per_page'];}
+		?>
 <html>
 <head>
 <title>Mike and Chris's Super Forum</title>
@@ -13,7 +23,38 @@
 	<br>
 	<div id="page_body">
 		<div id="thread_name"> 
-			Forum Rules, please read before posting. Seriously, do it.
+			<?php 
+			$query = 'SELECT Title FROM Thread WHERE T_ID='.$T_ID;
+			$result = $db->query($query);
+			$row = $result->fetch_row();
+			$title = ($row[0]);
+			$result->close();
+			print($title);
+			?>
+		</div>
+		<div id="page_list">
+			<?php 
+			$page_list = 'Goto Page: ';
+			$query = 'SELECT COUNT(*) FROM Post WHERE T_ID='.$T_ID;
+			$result = $db->query($query);
+			$row = $result->fetch_row();
+			$pagecount = ($row[0]+$per_page-1)/$per_page;
+			$result->close();
+			
+			for ($i = 1; $i <= $pagecount; $i++){
+				if($i != 1){$page_list .= ', ';}
+				if($i == $curpage){
+					$page_list .= '<b><u>'.$curpage.'</u></b>';
+				}
+				else {
+					$page_list .= '<a href="'.$homepage.'thread.php?T_ID='.$T_ID.'&per_page='.$per_page.'&page='.$i.'">'.$i.'</a>';
+				}
+				
+			}
+			print($page_list);
+			 ?><br>
+			 Results per page: <a href="<?php print('thread.php?T_ID='.$T_ID.'&per_page=5&page=1') ?>">5</a>, <a href="<?php print('thread.php?T_ID='.$T_ID.'&per_page=10&page=1') ?>">10</a>, <a href="<?php print('thread.php?T_ID='.$T_ID.'&per_page=20&page=1') ?>">20</a>
+
 		</div>
 		<table id="post_item_table">
 			<tr id="post_item">
@@ -21,23 +62,32 @@
 				<td id="table_header">Content</td>
 				<td id="table_header">Post Time</td>
 			</tr>
-			<tr id="post_item">
-				<td id="post_item_user"><a href="">Admin</a></td>
-				<td id="post_item_content">Forum Rules:<br>1)don't be dick.<br>2)Do what the mods say.<br>3)see rules 1 and 2</td>
-				<td id="post_item_date">5/26/2012 9:18pm</td>
-			</tr>	
-			<tr id="post_item">
-				<td id="post_item_user"><a href="">fortnerm</a>
-				<td id="post_item_content">Jeez, these rules need some real work.</td>
-				<td id="post_item_date">5/27/2012 2:50pm</td>
-			</tr>	
+			<?php  
+			$query = 'SELECT User.U_ID, Screen_Name, Content, Post_Time FROM Post NATURAL JOIN User WHERE T_ID='.$T_ID.' ORDER BY Post_Time ASC LIMIT '.(($curpage-1)*$per_page).','.$per_page;
+			//print($query);
+			$row_format = '<tr id="post_item"><td id="post_item_user"><a href="user.php?U_ID=%s">%s</a></td><td id="post_item_content">%s</td><td id="post_item_date">%s</td></tr>';
+			$result = $db->query($query);
+			while($row = $result->fetch_assoc()){
+				printf($row_format, $row['U_ID'], $row['Screen_Name'], $row['Content'] ,$row['Post_Time']);
+			}
+			?>
 		</table>
-		<br>
+		<div id="page_list">
+			<?php print($page_list); ?>
+		</div>
+		<?php 
+		if(!isset($_SESSION['U_ID'])){
+			print('<br>Login to post');
+		}
+		else { ?>
 		<form id="newpost_form"action="newpost.php" method="post">
 			New Post:<br> <textarea id="newpost_content" name="content" rows=6 cols=50></textarea>
 			<br>
+			<input type="hidden" name="T_ID" value="<?php print($T_ID); ?>">
+			<input type="hidden" name="per_page" value="<?php print($per_page); ?>">
 			<input id="newpost_submit" type="submit">
 		</form>
+		<?php } ?>
 	</div>
 	<br>
 	<?php include "footer.php" ?>

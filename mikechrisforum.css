@@ -20,6 +20,8 @@ table,th,td{border:1px solid black;}
 
 #table_header{font-size: 150%;}
 
+#thread_name{font-size: 150%; border: 1px solid black;}
+
 #thread_link_name{font-size: 150%; min-width: 400px;}
 #thread_link_date{width: 100px;}
 #thread_link_count{width: 100px;}

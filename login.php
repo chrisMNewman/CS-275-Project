@@ -25,7 +25,7 @@ if(count($url_arr) >= 2){
 	}
 }
 
-$query = 'SELECT U_ID, Password FROM User WHERE Screen_Name LIKE "'. $username.'"';
+$query = 'SELECT U_ID, Screen_Name, Password FROM User WHERE Screen_Name LIKE "'. $username.'"';
 if($result = $db->query($query)){
 	if($result->num_rows != 1){
 		$result->close();
@@ -34,6 +34,7 @@ if($result = $db->query($query)){
 	while ($row = $result->fetch_assoc()){
 		$stored_password = $row['Password'];
 		$U_ID = $row['U_ID'];
+		$username = $row['Screen_Name'];
 	}
 	$result->close();
 }

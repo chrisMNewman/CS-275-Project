@@ -10,22 +10,15 @@ function validateLoginForm()
 	var salt = login.elements["server_salt"];
 	var pwd_hash = login.elements["password_hash"];
 
-	var hash = CryptoJS.SHA256(pwd.value + salt);
-
+	var hash = CryptoJS.SHA256(pwd.value + salt.value);
 	pwd_hash.value = hash.toString(CryptoJS.enc.Hex);
 	pwd.value = '';
-
 	return true;
 }
 </script>
 
 
 <div id="page_header" >
-	<span id="links">
-		<a href="<?php print($homepage.'index.php'); ?>"><img src="title_image.png"></a> 
-	</span>
-
-
 	<span id="login">
 		<?php if (isset($_SESSION['username'])) {?>
 
@@ -54,4 +47,11 @@ function validateLoginForm()
 		<?php } ?>
 
 	</span>
+	
+	<span id="links">
+		<a href="<?php print($homepage.'index.php'); ?>"><img src="title_image.png"></a> 
+	</span>
+
+
+	
 </div>

@@ -18,7 +18,7 @@ if(count($url_arr) >= 2){
 	if(!empty($params)){
 		$params = explode('&', $params);  //array of key=value pair params
 		for($i = 0; $i < count($params); $i++){
-			if(strcmp($params[$i],'login_error') != 0){
+			if(strcmp(strtok($params[$i],'='),'login_error') != 0){
 				$return_url .= ($params[$i].'&');
 			}
 		}		

@@ -20,6 +20,34 @@ if (isset($_GET['per_page'])) {
 	$_SESSION['post_per_page']= $per_page;}
 ?>
 
+<script type="text/javascript"> 
+function validateNewpostForm()
+{
+	var newpost = document.forms["newpost_form"];
+
+	var content = newpost.elements["content"].value;
+
+	var content_error = false;
+
+	if ((content.length < 1) || (content.length > 500)){
+		content_error = true;
+	}
+
+	if (content_error){
+		//form invalid, return error messages
+		var error_message = 'Oops:\n';
+		if (content_error){
+			error_message = error_message + 'Post must be nonempty and at most 500 characters\n';
+		}
+		alert(error_message);
+	    return false; 
+ 	}
+	else{
+		return true;
+	}
+}
+</script>
+
 <html>
 <head>
 <title>Mike and Chris's Super Forum</title>
@@ -35,10 +63,15 @@ if (isset($_GET['per_page'])) {
 			<?php 
 			$query = 'SELECT Title, U_ID FROM Thread WHERE T_ID='.$T_ID;
 			if($result = $db->query($query)){
-				$row = $result->fetch_row();
-				$title = $row[0];
-				$owner = $row[1];
-				$result->close();
+				if($result->num_rows == 0){
+					exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage) . '"/>'); 
+				}
+				else{
+					$row = $result->fetch_row();
+					$title = $row[0];
+					$owner = $row[1];
+					$result->close();
+				}
 			}
 			else{
 				$title = "Database Error, please contact administrator.";
@@ -96,7 +129,7 @@ if (isset($_GET['per_page'])) {
 			$row_format = 
 						'<tr id="post_item">
 						<td id="post_item_user"><a href="user.php?U_ID=%s">%s</a></td>
-						<td id="post_item_content">%s</td>
+						<td id="post_item_content"><textarea id="post_item_content" readonly=1 rows=5 cols=100>%s</textarea></td>
 						<td id="post_item_date">%s</td>
 						<td id="post_item_date">%s</td>
 						<td id="post_item_buttons">%s</td>
@@ -105,17 +138,17 @@ if (isset($_GET['per_page'])) {
 				while($row = $result->fetch_assoc()){
 					if($_SESSION['U_ID'] == $row['U_ID']){
 						$buttons = 
-								'<table><tr><td><form action="posteditor.php" method="post">
+								'<form action="posteditor.php" method="post">
 								<input type="hidden" name="P_Number" value="'.$row['P_Number'].'">
 								<input type="hidden" name="curpage" value="'.$curpage.'">
 								<input type="submit" value="Edit">
-								</form></td><td>
+								</form> <br>
 								<form action="deletepost.php" method="post">
 								<input type="hidden" name="P_Number" value="'.$row['P_Number'].'">
 								<input type="hidden" name="T_ID" value="'.$T_ID.'">
 								<input type="hidden" name="curpage" value="'.$curpage.'">
 								<input type="submit" value="Delete">
-								</form></td></tr></table>';
+								</form>';
 					}
 					else{
 						$buttons = '';
@@ -138,7 +171,7 @@ if (isset($_GET['per_page'])) {
 			print('<br>Login to post');
 		}
 		else { ?>
-		<form id="newpost_form"action="newpost.php" method="post">
+		<form id="newpost_form"action="newpost.php" method="post" onsubmit="return validateNewpostForm();">
 			New Post:<br> <textarea id="newpost_content" name="content" rows=6 cols=50></textarea>
 			<br>
 			<input type="hidden" name="T_ID" value="<?php print($T_ID); ?>">

@@ -4,10 +4,15 @@ a:link{color: #001040; text-decoration: none;}
 a:visited{color: #001040;text-decoration: none;}
 a:hover{color: #000000;text-decoration: underline;}
 
-form {margin: 0px 0px 0px 0px; }
+img{border: 0px; margin: 0px 0px 0px 0px;  ; display:inline;}
+
+form {margin: 0px 0px 0px 0px; display: inline;}
+
+span{display:inline;}
 
 #wrap{min-width:800px;}
 #page_header{border: 3px solid black; font-size: 125%; background-color: #D85A1A;}
+#links{position: static;}
 #login{float:right;}
 
 #login_errors{background-color: #EEEEEE; border: 1px solid red; color: red;}
@@ -36,7 +41,18 @@ table,th,td{border:1px solid black;}
 #post_item_buttons td,
 #post_item_buttons th{border: 0px solid black;}
 
-
+#post_item_content textarea{
+	resize:none; 
+	background-color:#D85A1A; 
+	border:0px solid black; 
+	scrollbar-base-color:       #D85A1A;
+	scrollbar-arrow-color:      #D85A1A;
+	scrollbar-track-color:      #D85A1A;
+	scrollbar-3dlight-color:    #D85A1A;
+	scrollbar-highlight-color:  #D85A1A;
+	scrollbar-face-color:       #D85A1A;
+	scrollbar-shadow-color:     #D85A1A;
+	scrollbar-darkshadow-color: #D85A1A;}
 
 #newpost_form{position: relative; left: 30px;}
 #newpost_content{width: 400px; height: 150px;}

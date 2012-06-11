@@ -64,7 +64,7 @@ function validateNewuserForm()
 	    return false; 
  	}
 	else{
-		var hash = CryptoJS.SHA256(password + salt);
+		var hash = CryptoJS.SHA256(password + salt.value);
 		pwd_hash.value = hash.toString(CryptoJS.enc.Hex);
 
 		pwd.value = '';

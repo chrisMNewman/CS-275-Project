@@ -61,9 +61,9 @@ function validateNewthreadForm()
 			<input id="newthread_title" type="text" name="title"><br>
 
 			<label for="newthread_content">First Post:</label><br> 
-			<textarea id="newthread_content" name="content" rows=6 cols=50></textarea>
+			<textarea id="newthread_content" name="content" rows=5 cols=100></textarea>
 			<br>
-			<input id="newpost_submit" type="submit">
+			<input id="newpost_submit" type="submit" name="Post">
 		</form>
 		<?php } ?>
 	</div>

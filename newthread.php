@@ -3,7 +3,7 @@ session_start();
 require("common.php");
 
 $title = $db->real_escape_string(trim($_POST['title']));
-$content = $db->real_escape_string($_POST['content']);
+$content = $db->real_escape_string(strip_tags($_POST['content']));
 $U_ID = $_SESSION['U_ID'];
 $time = date('Y-m-d H:i:s');
 

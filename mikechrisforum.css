@@ -37,9 +37,19 @@ table,th,td{border:1px solid black;}
 #post_item_content{min-width: 300px}
 #post_item_user{font-size: 150%; width: 200px;}
 #post_item_date{width: 100px;}
-#post_item_buttons table,
-#post_item_buttons td,
-#post_item_buttons th{border: 0px solid black;}
+
+
+input{background-color:#C6C0B7; }}
+
+#newthread_content textarea{ 
+	resize:none; 
+	color:#C6C0B7;
+	}
+
+#newpost_content textarea{ 
+	resize:none; 
+	color:#C6C0B7;
+	}	
 
 #post_item_content textarea{
 	resize:none; 

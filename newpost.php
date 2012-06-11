@@ -2,7 +2,7 @@
 session_start(); 
 require("common.php");
 
-$content = $db->real_escape_string($_POST['content']);
+$content = $db->real_escape_string(strip_tags($_POST['content'], $allowed_tags));
 $T_ID = $db->real_escape_string(trim($_POST['T_ID']));
 $U_ID = $_SESSION['U_ID'];
 $time = date('Y-m-d H:i:s');
@@ -17,6 +17,8 @@ if ($db->error){
 	exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'index.php?database_error='.$db->error) . '"/>'); 
 }
 
+$per_page = $_SESSION['post_per_page'];
+
 $query = 'SELECT COUNT(*) FROM Post WHERE T_ID='.$T_ID;
 if($result = $db->query($query)){
 	$row = $result->fetch_row();
@@ -27,7 +29,7 @@ else {
 	$pagecount = 1;
 }
 
-$per_page = $_SESSION['post_per_page'];
+
 
 exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'thread.php?T_ID='.$T_ID.'&page='.$pagecount) . '"/>'); 
 ?>

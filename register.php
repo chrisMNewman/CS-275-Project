@@ -86,7 +86,7 @@ function validateNewuserForm()
 				print('<div id="register_errors">Sorry, that username is already in use.</div>');} ?>
 
 	  Create new account:<br>
-	  WARNING!  Do NOT consider this website secure, choose a password you won't use elsewhere.
+	  WARNING!  Do NOT consider this website secure, choose a password you won't use elsewhere. <br>
 	  <form id="newuser_form" action="newuser.php" method="post" onsubmit="return validateNewuserForm();">
 	  	
 	    <label for="newuser_name">Username</label>

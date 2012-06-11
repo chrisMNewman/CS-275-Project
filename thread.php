@@ -172,10 +172,10 @@ function validateNewpostForm()
 		}
 		else { ?>
 		<form id="newpost_form"action="newpost.php" method="post" onsubmit="return validateNewpostForm();">
-			New Post:<br> <textarea id="newpost_content" name="content" rows=6 cols=50></textarea>
+			New Post:<br> <textarea id="newpost_content" name="content" rows=5 cols=100></textarea>
 			<br>
 			<input type="hidden" name="T_ID" value="<?php print($T_ID); ?>">
-			<input id="newpost_submit" type="submit">
+			<input id="newpost_submit" type="submit" value="Post">
 		</form>
 		<?php } ?>
 	</div>

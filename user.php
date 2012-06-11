@@ -69,29 +69,26 @@ function validatePasswordChangeForm()
 	<br>
 
 	<?php
-		$query = 'SELECT Screen_Name, Join_Date, COUNT(*), MAX(Post.Last_Edit_Time), Post.T_ID FROM User NATURAL JOIN Post WHERE U_ID ='.$U_ID.' GROUP BY U_ID';
+		$query = 'SELECT Screen_Name, Join_Date, COUNT(*), MAX(Post.Last_Edit_Time) FROM User NATURAL JOIN Post WHERE U_ID ='.$U_ID.' GROUP BY U_ID';
 			if($result = $db->query($query)){
 				$row = $result->fetch_row();
-				$title = $row[0];
+				$name = $row[0];
 				$joindate = $row[1];
 				$postcount = $row[2];
 				$lastedit = $row[3];
-				$lastthread = $row[4];
 				$result->close();
 			}
 			else{
-				$title = "Database Error, please contact administrator.";
-				$owner = 'None';
+				$name = "Database Error, please contact administrator.";
 			}
 	?>
 	
     <div id="page_body">
 		<div id="user_info">
-			<p>Username: <?php print($title)?></p>
+			<p>Username: <?php print($name)?></p>
 			<p>Join Date: <?php print($joindate)?></p>
 			<p>Post Count: <?php print($postcount)?></p>
-			<p>Last Edit at: <?php print($lastedit)?></p>
-			<p>In <a href="<?php print($homepage.'thread.php?T_ID='.$lastthread)?>">This</a> Thread</p>
+			<p>Last Activity at: <?php print($lastedit)?></p>
 		</div>
 		<?php if($U_ID == $_SESSION['U_ID']){ ?>
 

@@ -34,5 +34,3 @@ ALTER TABLE Post ADD FOREIGN KEY ( U_ID ) REFERENCES User( U_ID );
 #(Create the admin user with password "Password")
 INSERT INTO User
 VALUES ( null, 'Admin', '2012-06-10', '4b939e3aa91af9ceee4b64ab52ea517c0435254d69b2a32f1189a5b9a8a83ba5') ; 
-INSERT INTO User
-VALUES ( null, 'Username', '2012-06-10', '') ; #don't allow "username to be valid"

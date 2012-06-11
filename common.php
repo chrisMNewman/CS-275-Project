@@ -3,6 +3,8 @@ require ("identifier.php");
 
 $allowed_tags = '';
 
+$forbidden_names = array('Username','Guest');
+
 $db = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if (!$db) {
     die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());

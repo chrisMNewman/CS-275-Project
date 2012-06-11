@@ -17,6 +17,9 @@ if($result = $db->query($query)){
 		$result->close();
 		exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'register.php?username_taken') . '"/>');
 	}
+	elseif(in_array($username, $forbidden_names)){
+		exit('<meta http-equiv="refresh" content="0; url=' . urldecode($homepage.'register.php?username_taken') . '"/>');
+	}
 	else{ //username is not taken so add new user to the User table and generate values
 		$result->close();
 		$query = 'INSERT INTO `User` VALUES (null,"'.$username.'","'.date('Y-m-d').'","'.$password.'")';

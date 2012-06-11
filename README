@@ -21,6 +21,8 @@ register.php - registration page for new users
 	
 -newuser.php - handler for registration form
 
+-user.php - view user info for a particular user
+
 header.php - header for the other pages, contains login/logout form and link to homepage
 	
 -login.php - handler for login form in header
